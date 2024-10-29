@@ -11,7 +11,7 @@ export default function Home() {
   const [currentExercise, setCurrentExercise] = useState(0);
   const [hasFinishedExercises, setHasFinishedExercises] = useState(false);
 
-  const [exercises, setExercises] = useState([
+  const [exercies, setExercies] = useState([
     {
       title: "Ejercicio 1",
       description: "Voy a cambiar estos $150 dólares a pesos.",
