@@ -10,6 +10,7 @@ export default function Home() {
   const [timeInterval, setTimeInterval] = useState(3);
   const [currentExercise, setCurrentExercise] = useState(0);
   const [hasFinishedExercises, setHasFinishedExercises] = useState(false);
+  const [resstartTimer, setRestartTimer] = useState(3);
 
   const [exercies, setExercies] = useState([
     {
@@ -173,6 +174,17 @@ export default function Home() {
       setCurrentExercise(0);
     }
   };
+
+  const nextExercise = () => {
+    handleExercisesTimer();
+  };
+
+  const previosExercise = () => {
+    if (currentExercise > 0) {
+      setCurrentExercise(currentExercise - 1);
+    }
+  };
+
   return (
     <div className="flex justify-center items-center h-screen w-screen">
       {isStarted ? (
@@ -206,24 +218,49 @@ export default function Home() {
               setIsStarted={setIsStarted}
               setIsPaused={setIsPaused}
               setHasFinishedExercises={setHasFinishedExercises}
+              restartTimer={resstartTimer}
             />
           </div>
 
           {!hasFinishedExercises && (
-            <button
-              className={`m-auto w-[200px] text-2xl rounded-lg text-white px-4 py-3 font-bold ${
-                isPaused ? "bg-green-400" : "bg-red-400 "
-              }`}
-              onClick={() => {
-                if (isPaused) {
+            <div className="flex flex-row">
+              <button
+                className={`m-auto w-[200px] text-2xl rounded-lg text-white px-4 py-3 font-bold bg-orange-400`}
+                onClick={() => {
+                  previosExercise();
+                  setRestartTimer(true); // Trigger reset
                   setIsPaused(false);
-                } else {
-                  setIsPaused(true);
-                }
-              }}
-            >
-              {isPaused ? "Reanudar" : "Pausar"}
-            </button>
+                  setTimeout(() => setRestartTimer(false), 100); //
+                }}
+              >
+                Anterior
+              </button>
+              <button
+                className={`m-auto w-[200px] text-2xl rounded-lg text-white px-4 py-3 font-bold ${
+                  isPaused ? "bg-green-400" : "bg-red-400 "
+                }`}
+                onClick={() => {
+                  if (isPaused) {
+                    setIsPaused(false);
+                  } else {
+                    setIsPaused(true);
+                  }
+                }}
+              >
+                {isPaused ? "Reanudar" : "Pausar"}
+              </button>
+              <button
+                className={`m-auto w-[200px] text-2xl rounded-lg text-white px-4 py-3 font-bold bg-orange-400`}
+                onClick={() => {
+                  nextExercise();
+                  setRestartTimer(true); // Trigger reset
+                  setIsPaused(false);
+                  setTimeout(() => setRestartTimer(false), 100); // Reset it back after a short delay
+                }}
+              >
+                Siguiente
+              </button>
+            </div>
           )}
 
           {hasFinishedExercises && (

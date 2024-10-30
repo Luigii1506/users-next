@@ -1,33 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
 
-const Timer = ({
-  interval,
-  isPaused,
-  onTimerEnds,
-  currentExercise,
-  setCurrentExercise,
-  exercises,
-  setIsStarted,
-  setIsPaused,
-  setHasFinishedExercises,
-}) => {
+const Timer = ({ interval, isPaused, onTimerEnds, restartTimer }) => {
   const [countDownTime, setCountDownTime] = useState({
     minutes: "00",
     seconds: "00",
   });
-  const [timeRemaining, setTimeRemaining] = useState(interval * 60 * 1000); // Tiempo restante en milisegundos
+  const [timeRemaining, setTimeRemaining] = useState(10 * 1000); // Tiempo restante en milisegundos
   const [hasFinished, setHasFinished] = useState(false);
 
-  const handleExercisesTimer = useCallback(() => {
-    if (currentExercise < exercises.length - 1) {
-      setCurrentExercise(currentExercise + 1);
-    } else {
-      //setIsStarted(false);
-      //setCurrentExercise(0);
-      setHasFinishedExercises(true);
-      setIsPaused(true);
+  useEffect(() => {
+    if (restartTimer) {
+      setTimeRemaining(interval * 60 * 1000); // Reset to the interval time in milliseconds
     }
-  }, [currentExercise, exercises.length, setCurrentExercise]);
+  }, [restartTimer, interval]);
 
   useEffect(() => {
     let intervalId;
@@ -39,7 +24,7 @@ const Timer = ({
             clearInterval(intervalId);
             setCountDownTime({ minutes: "00", seconds: "00" });
             setHasFinished(true);
-            return interval * 60 * 1000; // Reset the timer to 10 seconds for the next countdown
+            return 10 * 1000; // Reset the timer to 10 seconds for the next countdown
           } else {
             setHasFinished(false);
             const newTime = prevTime - 1000;
@@ -57,11 +42,11 @@ const Timer = ({
     }
 
     return () => clearInterval(intervalId);
-  }, [isPaused, timeRemaining, handleExercisesTimer]);
+  }, [isPaused, timeRemaining]);
 
   useEffect(() => {
     if (hasFinished) {
-      handleExercisesTimer();
+      onTimerEnds();
     }
   }, [timeRemaining, hasFinished]);
 
