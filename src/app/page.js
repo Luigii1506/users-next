@@ -196,7 +196,7 @@ export default function Home() {
             <div className="text-black  text-[45px] text-center mb-2">
               Descripción: {exercies[currentExercise].description}
             </div>
-            <div className="text-black  text-[50px] text-center">
+            {/* <div className="text-black  text-[50px] text-center">
               Monto:{" "}
               <span className="font-bold">
                 {exercies[currentExercise].received.toLocaleString("en-US", {
@@ -205,7 +205,7 @@ export default function Home() {
                 })}{" "}
                 {exercies[currentExercise].currency}
               </span>
-            </div>
+            </div> */}
           </div>
           <div className="mb-5">
             <Timer3
