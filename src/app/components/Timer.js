@@ -5,7 +5,7 @@ const Timer = ({ interval, isPaused, onTimerEnds, restartTimer }) => {
     minutes: "00",
     seconds: "00",
   });
-  const [timeRemaining, setTimeRemaining] = useState(10 * 1000); // Tiempo restante en milisegundos
+  const [timeRemaining, setTimeRemaining] = useState(interval * 60 * 1000); // Tiempo restante en milisegundos
   const [hasFinished, setHasFinished] = useState(false);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Timer = ({ interval, isPaused, onTimerEnds, restartTimer }) => {
             clearInterval(intervalId);
             setCountDownTime({ minutes: "00", seconds: "00" });
             setHasFinished(true);
-            return 10 * 1000; // Reset the timer to 10 seconds for the next countdown
+            return interval * 60 * 1000; // Reset the timer to 10 seconds for the next countdown
           } else {
             setHasFinished(false);
             const newTime = prevTime - 1000;
