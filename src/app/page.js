@@ -7,70 +7,70 @@ import Timer3 from "../app/components/Timer";
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [timeInterval, setTimeInterval] = useState(3);
+  const [timeInterval, setTimeInterval] = useState(1);
   const [currentExercise, setCurrentExercise] = useState(0);
   const [hasFinishedExercises, setHasFinishedExercises] = useState(false);
-  const [resstartTimer, setRestartTimer] = useState(3);
+  const [resstartTimer, setRestartTimer] = useState(1);
 
   const [exercies, setExercies] = useState([
     {
       title: "Ejercicio 1",
-      description: "Voy a cambiar estos $1,500 dólares a pesos.",
-      received: 1500,
+      description: "Voy a cambiar estos $150 dólares a pesos.",
+      received: 150,
       currency: "USD",
     },
     {
       title: "Ejercicio 2",
       description:
-        "Quiero recibir $19,600 pesos y tengo dólares para el cambio.",
-      received: 19600,
+        "Quiero recibir $1,960 pesos y tengo dólares para el cambio.",
+      received: 100,
       currency: "USD",
     },
     {
       title: "Ejercicio 3",
-      description: "Voy a llevarme $2,500 dólares; traigo pesos para cubrirlo.",
-      received: 2500,
+      description: "Voy a llevarme $250 dólares; traigo pesos para cubrirlo.",
+      received: 5000,
       currency: "MXN",
     },
     {
       title: "Ejercicio 4",
-      description: "Quiero recibir $25,000 pesos y tengo dólares.",
-      received: 25000,
+      description: "Quiero recibir $2,500 pesos y tengo dólares.",
+      received: 125,
       currency: "USD",
     },
     {
       title: "Ejercicio 5",
-      description: "Quiero recibir $75,000 pesos y tengo dólares.",
+      description: "Quiero recibir $7,500 pesos y tengo dólares.",
       received: 382,
       currency: "USD",
     },
     {
       title: "Ejercicio 6",
-      description: "Voy a llevarme $3,000 dólares; traigo pesos para cubrirlo.",
+      description: "Voy a llevarme $300 dólares; traigo pesos para cubrirlo.",
       received: 6000,
       currency: "MXN",
     },
     {
       title: "Ejercicio 7",
-      description: "Voy a cambiar estos $30,000 pesos a dólares.",
+      description: "Voy a cambiar estos $3,000 pesos a dólares.",
       received: 3000,
       currency: "MXN",
     },
     {
       title: "Ejercicio 8",
-      description: "Quiero recibir $50,000 pesos y tengo dólares.",
+      description: "Quiero recibir $500 pesos y tengo dólares.",
       received: 25.51,
       currency: "USD",
     },
     {
       title: "Ejercicio 9",
-      description: "Voy a cambiar estos $7,000 dólares a pesos.",
+      description: "Voy a cambiar estos $200 dólares a pesos.",
       received: 200,
       currency: "USD",
     },
     {
       title: "Ejercicio 10",
-      description: "Quiero recibir $90,000 pesos y tengo dólares.",
+      description: "Quiero recibir $900 pesos y tengo dólares.",
       received: 45.91,
       currency: "USD",
     },
@@ -165,7 +165,6 @@ export default function Home() {
       currency: "MXN",
     },
   ]);
-
   const handleExercisesTimer = () => {
     if (currentExercise < exercies.length - 1) {
       setCurrentExercise(currentExercise + 1);
