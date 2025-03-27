@@ -7,10 +7,10 @@ import Timer3 from "../app/components/Timer";
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [timeInterval, setTimeInterval] = useState(3);
+  const [timeInterval, setTimeInterval] = useState(1);
   const [currentExercise, setCurrentExercise] = useState(0);
   const [hasFinishedExercises, setHasFinishedExercises] = useState(false);
-  const [resstartTimer, setRestartTimer] = useState(3);
+  const [resstartTimer, setRestartTimer] = useState(1);
 
   const [exercies, setExercies] = useState([
     {
